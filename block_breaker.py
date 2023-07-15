@@ -97,7 +97,7 @@ def main():
             if event.type == pg.QUIT:
                 return 0
 
-        if tmr%300 == 0 and len(enemys) < 10:  # 300フレームに1回，敵機を出現させる
+        if tmr%200 == 0 and len(enemys) < 10:  # 一定のフレーム毎に1回，敵機を出現させる
             enemys.add(Enemy())
             
         for emy in enemys:
