@@ -49,13 +49,12 @@ class Bullet(pg.sprite.Sprite):
     speed_lst = [2, 8]
     damage_lst = [1, 2]
 
-    def __init__(self, emy: Enemy):
+    def __init__(self, emy: Enemy, num: int):
         """
-        弾の種類を決定
+        弾の種類を引数numの値で決定
         引数1 emy：弾を放つする敵機
         """
         super().__init__()
-        num = random.randint(0,1)  # 乱数で弾の種類を決定
         self.image = __class__.imgs[num]  # numを元に画像を決定
         self.rect = self.image.get_rect() 
         self.rect.centerx = emy.rect.centerx
@@ -103,7 +102,9 @@ def main():
         for emy in enemys:
             if emy.state == "stop" and tmr%emy.interval == 0:
                 # 敵機が停止状態に入ったら，intervalに応じて弾を発射
-                bullets.add(Bullet(emy))
+                bulletNum = random.randint(0, 1)
+                bullets.add(Bullet(emy, bulletNum))
+                
         screen.blit(bg_img, [0, 0])
         
         # ブロックの更新と描画
